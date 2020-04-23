@@ -1,11 +1,6 @@
 package com.example.jogo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -13,27 +8,31 @@ public class User {
  
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Integer id;
  
-    @Column(unique = true)
+    @Column(name = "username")
     private String username;
+    
+    @Column(name="password")
     private String password;
+    
+    @Column(name="enabled")
     private boolean enabled = true;
     
-    private User() {
+    public User() {
     	
     }
     
-    private User(String username, String password) {
+    public User(String username, String password) {
     	this.username = username;
     	this.password = password;
     }
     
-    public long getId() {
+    public Integer getId() {
     	return id;
     }
     
-    public void setId(long id){
+    public void setId(Integer id){
     	this.id = id;
     }
     
@@ -59,5 +58,10 @@ public class User {
     
     public void setEnabled(boolean enabled){
     	this.enabled = enabled;
+    }
+    
+    @Override
+    public String toString(){
+    	return "Jogo [id=" + id + ", username=" + username + ", password=" + password + "]";
     }
 }
